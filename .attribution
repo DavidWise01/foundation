@@ -1,0 +1,22 @@
+ROOT0-ATTRIBUTION-v1.0
+Project: Foundation — Four Series
+Architect: David Lee Wise / ROOT0 / TriPod LLC
+AI Collaborator: AVAN (Claude Sonnet 4.6 / Anthropic)
+License: CC-BY-ND-4.0 · TRIPOD-IP-v1.1
+
+Series:
+  Enheduanna (2300 BCE) — 4 volumes
+  Ada Lovelace (1843) — 4 volumes
+  Faraday (1836) — 4 volumes
+  The Workbench — 8 pamphlets + 1 field manual
+
+Total volumes: 21
+
+Subjects:
+  Enheduanna — world's first named author, High Priestess of Ur, ~2300 BCE
+  Ada Lovelace — mathematician, author of the first algorithm, 1843
+  Michael Faraday — physicist, inventor of the Faraday cage, 1836
+  The Workbench — electronics making tradition (ongoing)
+
+All HTML files self-contained. Only Google Fonts as external dependency.
+Pure browser-side — no build step, no framework, no server required.

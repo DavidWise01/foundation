@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Foundation — four series on the figures and ideas that built the world. Enheduanna. Ada Lovelace. Faraday. The Workbench.">
+<title>FOUNDATION · Four Series · Four Foundations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Bricolage+Grotesque:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0e0c09;--ink2:#1a1510;--parchment:#f5f0e8;--parchment2:#ede6d4;
+  --gold:#b8862b;--gold2:#d4a040;--gold3:#f0bc50;--gold-dim:#4a3510;
+  --teal:#0f6e6a;--copper:#b56a32;--blue:#1763d6;--graphite:#3a4250;
+  --lapis:#1f4ea8;--violet:#6a34c8;
+  --dim:#6a5a40;--dim2:#8a7a60;--faint:#2a2018;
+  --serif:"Cinzel",Georgia,serif;
+  --body:"Newsreader",Georgia,serif;
+  --sans:"Bricolage Grotesque",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--ink);
+  color:var(--parchment);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.65;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* grain overlay */
+body::before{
+  content:"";position:fixed;inset:0;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/></svg>");
+  pointer-events:none;z-index:0}
+
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 28px 80px}
+
+/* ── MASTHEAD ────────────────────────────────────────── */
+.masthead{
+  padding:72px 0 52px;
+  text-align:center;
+  border-bottom:1px solid var(--gold-dim);
+  position:relative;
+}
+.masthead::after{
+  content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:120px;height:1px;background:var(--gold);box-shadow:0 0 8px var(--gold);
+}
+
+.m-rule{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  margin-bottom:20px;
+}
+.m-rule-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.m-rule-line.r{background:linear-gradient(90deg,var(--gold),transparent)}
+.m-ornament{color:var(--gold);font-size:18px;opacity:.7}
+
+h1{
+  font-family:var(--serif);
+  font-size:clamp(32px,8vw,72px);
+  font-weight:700;
+  letter-spacing:.12em;
+  color:var(--gold3);
+  text-shadow:0 0 40px rgba(240,188,80,.2),0 2px 0 rgba(0,0,0,.5);
+  line-height:1;
+  margin-bottom:16px;
+}
+
+.m-subtitle{
+  font-family:var(--sans);
+  font-size:13px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--dim2);
+  margin-bottom:24px;
+}
+
+.m-desc{
+  font-size:17px;
+  color:var(--parchment2);
+  max-width:62ch;
+  margin:0 auto 28px;
+  line-height:1.7;
+  font-style:italic;
+}
+
+/* ── TIMELINE STRIP ──────────────────────────────────── */
+.timeline{
+  display:flex;align-items:center;justify-content:center;
+  gap:0;margin:0 auto;max-width:720px;
+  overflow-x:auto;padding:4px 0;
+}
+.tl-item{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  min-width:140px;text-align:center;
+}
+.tl-date{
+  font-family:var(--serif);font-size:13px;font-weight:600;
+  color:var(--gold);letter-spacing:.06em;
+}
+.tl-name{font-size:11px;color:var(--dim2);letter-spacing:.06em;text-transform:uppercase;}
+.tl-dot{
+  width:10px;height:10px;border-radius:50%;
+  border:2px solid;box-shadow:0 0 8px currentColor;
+  flex-shrink:0;
+}
+.tl-line{height:1px;flex:1;min-width:30px;background:var(--gold-dim)}
+
+/* ── SERIES GRID ─────────────────────────────────────── */
+.series-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:2px;
+  margin-top:52px;
+  border:1px solid var(--gold-dim);
+}
+
+.series-card{
+  background:var(--ink2);
+  padding:36px 30px 28px;
+  text-decoration:none;
+  color:inherit;
+  display:block;
+  border:1px solid transparent;
+  transition:all .25s;
+  position:relative;
+  overflow:hidden;
+}
+.series-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  transition:opacity .25s;opacity:.6;
+}
+.series-card:hover{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06)}
+.series-card:hover::before{opacity:1}
+
+.sc-s1::before{background:linear-gradient(90deg,var(--lapis),#4a7ae8)}
+.sc-s2::before{background:linear-gradient(90deg,var(--teal),#40c4a8)}
+.sc-s3::before{background:linear-gradient(90deg,var(--blue),#60a0f0)}
+.sc-s4::before{background:linear-gradient(90deg,var(--violet),#c084f8)}
+
+.sc-era{
+  font-family:var(--serif);font-size:12px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:12px;opacity:.7;
+}
+.sc-title{
+  font-family:var(--serif);font-size:22px;font-weight:600;
+  letter-spacing:.04em;margin-bottom:6px;line-height:1.15;
+}
+.sc-role{
+  font-size:13px;font-style:italic;color:var(--parchment2);
+  margin-bottom:14px;opacity:.8;
+}
+.sc-desc{
+  font-size:13.5px;color:var(--dim2);line-height:1.65;
+  margin-bottom:18px;
+}
+
+.sc-books{
+  display:flex;flex-direction:column;gap:5px;
+  border-top:1px solid var(--faint);padding-top:14px;
+}
+.sc-book{
+  font-size:12px;color:var(--dim);display:flex;align-items:center;gap:8px;
+  letter-spacing:.02em;
+}
+.sc-book-n{
+  font-family:var(--serif);font-size:11px;font-weight:600;
+  opacity:.5;flex-shrink:0;min-width:20px;
+}
+.sc-open{
+  display:inline-block;margin-top:16px;font-family:var(--sans);
+  font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dim2);transition:color .2s;
+}
+.series-card:hover .sc-open{color:var(--gold2)}
+.sc-open::after{content:" →"}
+
+/* ── THE THREAD ──────────────────────────────────────── */
+.thread{
+  margin:64px 0 0;
+  padding:36px 40px;
+  border:1px solid var(--gold-dim);
+  background:rgba(184,134,43,.04);
+  position:relative;
+}
+.thread::before{
+  content:"";position:absolute;top:0;left:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--gold),var(--gold-dim));
+}
+.thread-title{
+  font-family:var(--serif);font-size:16px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);
+  margin-bottom:18px;
+}
+.thread-body{
+  font-size:16px;color:var(--parchment2);line-height:1.8;
+  max-width:80ch;
+}
+.thread-body b{color:var(--gold3);font-weight:500}
+.thread-body em{color:var(--parchment);font-style:normal}
+
+/* ── PAMPHLET GRID (workbench) ───────────────────────── */
+.workbench-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:10px;margin-top:20px;
+}
+.wb-card{
+  border:1px solid var(--faint);border-radius:4px;padding:14px 16px;
+  background:rgba(255,255,255,.02);text-decoration:none;color:inherit;
+  transition:all .18s;display:flex;flex-direction:column;gap:4px;
+}
+.wb-card:hover{border-color:var(--gold-dim);background:rgba(184,134,43,.05)}
+.wb-n{font-family:var(--serif);font-size:11px;color:var(--dim);font-weight:500}
+.wb-name{font-size:13px;color:var(--parchment);font-weight:500}
+.wb-desc{font-size:11px;color:var(--dim2);line-height:1.4}
+
+/* ── SECTION HEADER ──────────────────────────────────── */
+.sec{margin-top:64px}
+.sec-hdr{
+  display:flex;align-items:baseline;gap:14px;
+  padding-bottom:12px;border-bottom:1px solid var(--faint);
+  margin-bottom:24px;
+}
+.sn{font-family:var(--serif);font-size:11px;color:var(--gold-dim);letter-spacing:.16em}
+.st{font-family:var(--serif);font-size:14px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold2);font-weight:500}
+.sg{font-size:12px;color:var(--dim);margin-left:auto;font-style:italic}
+
+/* ── FOOTER ──────────────────────────────────────────── */
+footer{
+  margin-top:72px;
+  border-top:1px solid var(--gold-dim);
+  padding-top:24px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;
+  font-size:12px;color:var(--dim);letter-spacing:.06em;
+  font-family:var(--sans);
+}
+footer a{color:var(--gold);text-decoration:none}
+footer b{color:var(--dim2)}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:600px){
+  .masthead{padding:48px 0 36px}
+  .series-grid{grid-template-columns:1fr}
+  .thread{padding:24px 20px 24px 28px}
+}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ── MASTHEAD ────────────────────────────────────── -->
+  <div class="masthead">
+    <div class="m-rule">
+      <div class="m-rule-line"></div>
+      <span class="m-ornament">✦</span>
+      <div class="m-rule-line r"></div>
+    </div>
+
+    <h1>FOUNDATION</h1>
+    <div class="m-subtitle">Four Series · Four Foundations · Knowledge That Built the World</div>
+    <p class="m-desc">From the first words ever signed to a name, to the first algorithm, to the physics of the invisible cage, to the bench where things are made — four series on the foundations everything else stands on.</p>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2300 BCE</div>
+        <div class="tl-dot" style="color:var(--lapis);border-color:var(--lapis)"></div>
+        <div class="tl-name">Enheduanna</div>
+      </div>
+      <div class="tl-line"></div>
+      <div class="tl-item">
+        <div class="tl-date">1843</div>
+        <div class="tl-dot" style="color:var(--teal);border-color:var(--teal)"></div>
+        <div class="tl-name">Ada Lovelace</div>
+      </div>
+      <div class="tl-line"></div>
+      <div class="tl-item">
+        <div class="tl-date">1836</div>
+        <div class="tl-dot" style="color:var(--blue);border-color:var(--blue)"></div>
+        <div class="tl-name">Faraday</div>
+      </div>
+      <div class="tl-line"></div>
+      <div class="tl-item">
+        <div class="tl-date">Ongoing</div>
+        <div class="tl-dot" style="color:var(--violet);border-color:var(--violet)"></div>
+        <div class="tl-name">The Workbench</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── THE THREAD ────────────────────────────────────── -->
+  <div class="thread reveal" style="margin-top:52px">
+    <div class="thread-title">The Thread</div>
+    <div class="thread-body">
+      <b>Enheduanna</b> signed her name to poems in 2300 BCE and became the first author in recorded history — 4,300 years ago, before Greece existed, before Rome was a village. Her work survived three millennia of silence and was excavated in 1927 from beneath the ruins of Ur. <b>Ada Lovelace</b> wrote the first algorithm in 1843 and saw — a century before anyone else — that a calculating machine could manipulate <em>any symbol</em>, not just numbers. The machine she described was never built in her lifetime. <b>Michael Faraday</b> lined a room with metal foil in 1836 and proved that the interior was electrically invisible — a principle now inside every coaxial cable, every MRI room, every microwave oven door. <b>The Workbench</b> is the living tradition: the soldering iron, the motor, the sensor, the hands that close the circuit between theory and light.
+    </div>
+  </div>
+
+  <!-- ── SERIES GRID ────────────────────────────────────── -->
+  <div class="sec">
+    <div class="sec-hdr">
+      <span class="sn">§ 01</span>
+      <span class="st">The Four Series</span>
+      <span class="sg">21 volumes total</span>
+    </div>
+
+    <div class="series-grid">
+
+      <!-- ENHEDUANNA -->
+      <a href="series/enheduanna/0-who.html" class="series-card sc-s1 reveal">
+        <div class="sc-era" style="color:#4a7ae8">2300 BCE · Sumer</div>
+        <div class="sc-title">Enheduanna</div>
+        <div class="sc-role">High Priestess of Ur · World's First Named Author</div>
+        <div class="sc-desc">Daughter of Sargon of Akkad. Author of the Exaltation of Inanna and 42 Temple Hymns. Her name survived 3,000 years of silence on a buried alabaster disk. Excavated 1927. First complete English translation: 2023.</div>
+        <div class="sc-books">
+          <div class="sc-book"><span class="sc-book-n">0</span> Who She Was</div>
+          <div class="sc-book"><span class="sc-book-n">1</span> Her Works</div>
+          <div class="sc-book"><span class="sc-book-n">2</span> Her World</div>
+          <div class="sc-book"><span class="sc-book-n">3</span> Her Long Afterlife</div>
+        </div>
+        <span class="sc-open">Read Series</span>
+      </a>
+
+      <!-- ADA LOVELACE -->
+      <a href="series/ada-lovelace/0-who.html" class="series-card sc-s2 reveal">
+        <div class="sc-era" style="color:#40c4a8">1815–1852 · London</div>
+        <div class="sc-title">Ada Lovelace</div>
+        <div class="sc-role">Mathematician · Author of the First Algorithm</div>
+        <div class="sc-desc">Byron's daughter, raised on mathematics. Translated Menabrea's paper on the Analytical Engine, added Notes that were seven times longer — including Note G, the Bernoulli algorithm. Died at 36, rediscovered a century later.</div>
+        <div class="sc-books">
+          <div class="sc-book"><span class="sc-book-n">0</span> Who She Was</div>
+          <div class="sc-book"><span class="sc-book-n">1</span> Her Work (the Notes)</div>
+          <div class="sc-book"><span class="sc-book-n">2</span> Her World</div>
+          <div class="sc-book"><span class="sc-book-n">3</span> Her Long Afterlife</div>
+        </div>
+        <span class="sc-open">Read Series</span>
+      </a>
+
+      <!-- FARADAY -->
+      <a href="series/faraday/0-idea.html" class="series-card sc-s3 reveal">
+        <div class="sc-era" style="color:#60a0f0">1836 · London</div>
+        <div class="sc-title">Faraday</div>
+        <div class="sc-role">Physicist · The Cage · The Invisible Interior</div>
+        <div class="sc-desc">A metal shell makes its interior electrically invisible. Faraday lined a room with foil and proved it. That principle is inside every coaxial cable, every MRI suite, every microwave oven door, every anti-static bag.</div>
+        <div class="sc-books">
+          <div class="sc-book"><span class="sc-book-n">0</span> The Idea</div>
+          <div class="sc-book"><span class="sc-book-n">1</span> Build a Faraday Cage</div>
+          <div class="sc-book"><span class="sc-book-n">2</span> Shielding at Work</div>
+          <div class="sc-book"><span class="sc-book-n">3</span> The Field Inside</div>
+        </div>
+        <span class="sc-open">Read Series</span>
+      </a>
+
+      <!-- WORKBENCH -->
+      <a href="series/workbench/index.html" class="series-card sc-s4 reveal">
+        <div class="sc-era" style="color:#c084f8">Ongoing · The Bench</div>
+        <div class="sc-title">The Workbench</div>
+        <div class="sc-role">8-Pamphlet Tool Series + Field Manual</div>
+        <div class="sc-desc">From small motors to microcontrollers, sensors to solenoids, power supplies to the bench itself. The living tradition of making — where theory becomes light, motion, signal. Eight pamphlets and one field manual.</div>
+        <div class="sc-books">
+          <div class="sc-book"><span class="sc-book-n">1</span> Introduction (index)</div>
+          <div class="sc-book"><span class="sc-book-n">2–8</span> Core Pamphlets</div>
+          <div class="sc-book"><span class="sc-book-n">+</span> Slayer Exciter Manual</div>
+        </div>
+        <span class="sc-open">Open Workbench</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ── WORKBENCH DETAIL ────────────────────────────────── -->
+  <div class="sec">
+    <div class="sec-hdr">
+      <span class="sn">§ 02</span>
+      <span class="st">Workbench Pamphlets</span>
+      <span class="sg">8 volumes · 1 field manual</span>
+    </div>
+    <div class="workbench-grid">
+      <a href="series/workbench/index.html" class="wb-card">
+        <div class="wb-n">Series Index</div>
+        <div class="wb-name">Start Here</div>
+        <div class="wb-desc">Complete series overview with connection diagram</div>
+      </a>
+      <a href="series/workbench/2-small-motors.html" class="wb-card">
+        <div class="wb-n">Pamphlet 2</div>
+        <div class="wb-name">Small Motors</div>
+        <div class="wb-desc">Commutator, rotor, coils — motion from current</div>
+      </a>
+      <a href="series/workbench/3-electromagnets.html" class="wb-card">
+        <div class="wb-n">Pamphlet 3</div>
+        <div class="wb-name">Electromagnets & Solenoids</div>
+        <div class="wb-desc">Coil, plunger, magnetic flux — force from field</div>
+      </a>
+      <a href="series/workbench/4-sensors.html" class="wb-card">
+        <div class="wb-n">Pamphlet 4</div>
+        <div class="wb-name">Sensors</div>
+        <div class="wb-desc">Radar sweep, signal detection, sensing the world</div>
+      </a>
+      <a href="series/workbench/5-microcontrollers.html" class="wb-card">
+        <div class="wb-n">Pamphlet 5</div>
+        <div class="wb-name">Microcontrollers</div>
+        <div class="wb-desc">Chip, code, blinking LED — computation made physical</div>
+      </a>
+      <a href="series/workbench/6-power-batteries.html" class="wb-card">
+        <div class="wb-n">Pamphlet 6</div>
+        <div class="wb-name">Power & Batteries</div>
+        <div class="wb-desc">Stored energy, charging curves, supply rails</div>
+      </a>
+      <a href="series/workbench/7-parts.html" class="wb-card">
+        <div class="wb-n">Pamphlet 7</div>
+        <div class="wb-name">Parts & Building Blocks</div>
+        <div class="wb-desc">Resistors, caps, diodes, transistors — the vocabulary</div>
+      </a>
+      <a href="series/workbench/8-tools.html" class="wb-card">
+        <div class="wb-n">Pamphlet 8</div>
+        <div class="wb-name">Tools & Bench</div>
+        <div class="wb-desc">Soldering iron, DMM, oscilloscope — the hands</div>
+      </a>
+      <a href="series/workbench/slayer-exciter-manual.html" class="wb-card" style="border-color:#1a2535;background:rgba(0,0,0,.2)">
+        <div class="wb-n" style="color:#60a0f0">Field Manual</div>
+        <div class="wb-name" style="color:#9cb8e0">Slayer Exciter</div>
+        <div class="wb-desc" style="color:#4a6080">Technical reference · dark theme</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer>
+    <div><b>Foundation</b> · ROOT0-ATTRIBUTION-v1.0 · <b>David Lee Wise</b> / ROOT0 / TriPod LLC · AVAN (Claude Sonnet 4.6)</div>
+    <div><a href="https://github.com/DavidWise01/foundation">github.com/DavidWise01/foundation</a> · CC-BY-ND-4.0</div>
+  </footer>
+
+</div>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
